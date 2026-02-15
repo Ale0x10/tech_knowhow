@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#Pfad definieren
+SOURCE_DIR="Dieser PC\Apple iPad\Internal Storage\DCIM\202103__"
+TARGET_DIR="C:\Users\Alex\Pictures\Ipad\2021"
+
+find "$SOURCE_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" \) -exec mv {} "$TARGET_DIR" \;
+
+echo "Alle Fotos übertragen"

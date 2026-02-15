@@ -1,0 +1,3 @@
+[submodule "lessons_learned_programming/jpy_notebooks/python-intro"]
+	path = lessons_learned_programming/jpy_notebooks/python-intro
+	url = https://github.com/technoindianjr/Python-Notebooks.git

@@ -1,0 +1,5 @@
+Auch ich sehe das wie in nachfolgendem Artikel beschrieben: 
+Blockdesigns sind eine gute Abstraktionsmöglichkeit bei der Architektur von (Geräte/Anlagen-)Systemen, um Baugruppen oder kleinere Schaltkreise effizient abstrakt zusammenzufassen und deren Beziehungen systematisch darzustellen.
+Außerdem finde auch ich Microsoft Visio das am besten geeignetste Tool dafür da man mit verschiedenen Layers und co. arbeiten kann.
+
+https://resources.altium.com/p/abstraction-level-block-diagram-keep-the-overview

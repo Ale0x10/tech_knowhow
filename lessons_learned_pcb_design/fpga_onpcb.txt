@@ -1,0 +1,82 @@
+Die Implementierung eines **FPGAs auf einer Platine** ist eine der anspruchsvollsten Aufgaben im PCB-Design. 
+FPGAs sind leistungsstark, flexibel und extrem empfindlich gegenüber Layoutfehlern. 
+Hier kommt eine **praxisnahe Checkliste**, basierend auf den besten Quellen:
+
+---
+
+## 🧠 **Grundlagen: Was ist ein FPGA?**
+Ein **Field Programmable Gate Array** ist ein konfigurierbarer Logikbaustein mit:
+- **Hunderten bis Tausenden von Pins**
+- **Hoher Pin-Dichte (meist BGA)**
+- **Schnellen digitalen Signalen (z. B. LVDS, DDR, PCIe)**
+- **Mehreren Versorgungsspannungen (Core, I/O, PLL, RAM)**
+
+---
+
+## ✅ **Checkliste für FPGA-Implementierung auf einer Platine**
+
+### 🔹 1. **Bauteilauswahl und Pinplanung**
+- [ ] **Pin-Planning mit Tool** (z. B. Xilinx Vivado, Intel Quartus)
+- [ ] **I/O-Standards definieren**: z. B. LVCMOS, LVDS, SSTL
+- [ ] **Power-Rails planen**: Core (z. B. 1.0 V), I/O (z. B. 3.3 V), PLL, RAM
+- [ ] **BGA-Footprint prüfen**: Padgröße, Pitch, Fanout-Möglichkeit
+
+---
+
+### 🔹 2. **Versorgung und Power-Management**
+- [ ] **Separate Spannungsregler** für jede Rail
+- [ ] **Sequencing beachten**: Core zuerst, I/O danach
+- [ ] **Entkopplungskondensatoren** direkt unter dem FPGA:
+  - 100 nF + 10 µF pro Versorgungspin
+  - **Low-ESR**, nahe am Pad
+- [ ] **Ferrite Beads** zur Trennung von Versorgungspfaden
+
+---
+
+### 🔹 3. **Masseführung und Rückstrompfade**
+- [ ] **Durchgehende Massefläche unter FPGA**
+- [ ] **Rückstrompfade direkt unter Signalleitungen**
+- [ ] **Sternpunktmasse** bei Mixed-Signal-Anwendungen
+- [ ] **Via-Stitching** unter BGA zur Massefläche
+
+---
+
+### 🔹 4. **Signalführung und Impedanzkontrolle**
+- [ ] **Differentialpaare** (LVDS, USB, PCIe) mit kontrollierter Impedanz (z. B. 100 Ω)
+- [ ] **Längenabgleich** bei schnellen Bussen (z. B. DDR, SPI)
+- [ ] **Keine 90°-Ecken**, stattdessen 45° oder Kurven
+- [ ] **Via-Optimierung**: möglichst wenige, keine unnötigen Übergänge
+
+---
+
+### 🔹 5. **Konfiguration und Debug**
+- [ ] **JTAG-Header** mit Pull-Ups und Schutz
+- [ ] **Boot-Modus definieren**: z. B. SPI-Flash, SD-Karte, USB
+- [ ] **Testpunkte** für Versorgung, Reset, Konfigurationspins
+- [ ] **Status-LEDs** für Power, DONE, INIT
+
+---
+
+### 🔹 6. **Thermisches Design**
+- [ ] **Kühlfläche unter FPGA** (freigelegtes Kupfer)
+- [ ] **Thermal Vias** zur unteren Massefläche
+- [ ] Optional: **Kühlkörper oder Heatspreader**
+
+---
+
+### 🔹 7. **EMV und Gehäuseintegration**
+- [ ] **Gehäusemasseanschluss** mit freigelegtem Kupferpad
+- [ ] **Schirmung empfindlicher Bereiche** (z. B. PLL, ADC)
+- [ ] **Y-Kondensator zur Erde** bei Netzbezug
+- [ ] **Differentialführung minimiert Abstrahlung**
+
+---
+
+## 📘 Quellen und Guides
+- [Xilinx UltraFast Design Methodology Guide (UG949)](https://www.xilinx.com/support/documents/sw_manuals/xilinx2022_1/ug949-vivado-design-methodology.pdf)
+- [AMD Vivado Design Methodology](https://docs.amd.com/r/en-US/ug949-vivado-design-methodology)
+- [EMA Design Automation: Essential FPGA PCB Design Guide](https://www.ema-eda.com/ema-resources/blog/essential-fpga-pcb-design-guide-emd/)
+
+---
+
+Bei kritischen Bauteilen: Thermal Vias nur thermisch, elektrisch entkoppelt (z. B. über isolierte Pads oder RC-Glied)
